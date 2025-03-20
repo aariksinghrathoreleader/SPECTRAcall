@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('app').style.opacity = 1;
             initHologram();
             initTiles();
-        }, 4000);
+        }, 4000); // Duration of the splash screen
     }
 
     handleSplashScreen();
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Upload Error:', error);
+            alert('An error occurred while uploading the image.');
         }
     });
 
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(data.message);
         } catch (error) {
             console.error('Create Magic Error:', error);
+            alert('An error occurred while creating magic.');
         }
     });
 });
@@ -72,8 +74,10 @@ function loadHologram(modelUrl) {
     const loader = new THREE.PLYLoader();
     loader.load(modelUrl, (geometry) => {
         const material = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true });
-        const mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+        mainMesh = new THREE.Mesh(geometry, material);
+        scene.add(mainMesh);
+    }, undefined, (error) => {
+        console.error('An error occurred while loading the model:', error);
     });
 }
 
@@ -103,7 +107,7 @@ function initTiles() {
     for (let i = 0; i < 5; i++) {
         const material = new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff, wireframe: true });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.x = i * 4 - 8;
+        cube.position.x = i * 4 - 8; // Position cubes in a row
         tileScene.add(cube);
         tiles.push(cube);
     }
@@ -114,9 +118,9 @@ function initTiles() {
 function animateTiles() {
     requestAnimationFrame(animateTiles);
     tiles.forEach((tile, index) => {
-        tile.rotation.x += 0.01 + index * 0.002;
+        tile.rotation.x += 0.01 + index * 0.002; // Different rotation speeds
         tile.rotation.y += 0.01 + index * 0.002;
-        tile.position.y = Math.sin(Date.now() * 0.001 + index) * 1.5;
+        tile.position.y = Math.sin(Date.now() * 0.001 + index) * 1.5; // Bounce effect
     });
     tileRenderer.render(tileScene, tileCamera);
 }
