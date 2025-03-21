@@ -74,8 +74,7 @@ header {
 
 .section h1, .section h2, .section p {
     color: #ffffff; 
-    text-shadow: 0 0 15px #00bfff, 0 0 
-      30px #00bfff; 
+    text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff; 
 }
 
 .hologram-title {
@@ -101,7 +100,8 @@ header {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 100px); 
+    max-height: calc(100vh - 100px); /* Set a max height */
+    overflow-y: auto; /* Enable vertical scrolling */
     padding: 20px; 
 }
 
@@ -222,7 +222,7 @@ header {
 
 .quote {
     background: rgba(255, 255, 255, 0.15); 
-    color: #ffd369; 
+    color: #ffcc00; /* Bright yellow color for the quote text */
     font-size: 2em; 
     padding: 30px; 
     border-radius: 20px; 
@@ -243,10 +243,61 @@ header {
 
 .quote-details {
     display: none; /* Initially hidden */
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffd369;
-    padding: 20px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(0, 173, 181, 0.8), rgba(0, 0, 0, 0.5)); /* Gradient background */
+    color: #ffd369; /* Text color */
+    padding: 30px; /* Increased padding for a spacious feel */
+    border-radius: 15px; /* Rounded corners */
     margin-top: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* Subtle shadow */
+    transition: transform 0.3s, opacity 0.5s ease-in-out; /* Smooth transition */
+    animation: fadeIn 0.5s forwards; /* Animation for showing */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Slide in effect */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quote-details h2 {
+    font-size: 2em; /* Larger font size for headings */
+    color: ; /* Different color for headings */
+    margin-bottom: 15px; /* Space below heading */
+    text-shadow: 0 0 10px rgba(0, 173, 181, 0.8); /* Subtle glow effect */
+}
+
+.quote-details p {
+    font-size: 1.1em; /* Slightly larger font size for paragraphs */
+    line-height: 1.6; /* Improved line height for readability */
+    margin-bottom: 15px; /* Space below paragraphs */
+}
+
+.quote-details ul, .quote-details ol {
+    margin-left: 20px; /* Indent lists */
+    margin-top: 10px; /* Space above lists */
+}
+
+.quote-details li {
+    margin-bottom: 10px; /* Space between list items */
+    position: relative; /* For pseudo-element */
+    padding-left: 25px; /* Space for the icon */
+}
+
+.quote-details li::before {
+    content: '✔️'; /* Checkmark icon before list items */
+    position: absolute;
+    left: 0; /* Positioning the icon */
+    color: #00adb5; /* Color for the icon */
+    font-size: 1.5em; /* Size of the icon */
+}
+
+.quote-details:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8); /* Increase shadow on hover */
+    cursor: pointer; /* Change cursor to pointer */
 }
