@@ -289,7 +289,6 @@ header {
 }
 
 .quote-details li::before {
-    content: '✔️'; /* Checkmark icon before list items */
     position: absolute;
     left: 0; /* Positioning the icon */
     color: #00adb5; /* Color for the icon */
