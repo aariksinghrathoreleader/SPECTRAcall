@@ -52,6 +52,41 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred while creating magic.');
         }
     });
+
+    // Function to toggle quote details
+    function toggleQuoteDetails(quoteDetails) {
+        const allDetails = document.querySelectorAll('.quote-details');
+        allDetails.forEach(detail => {
+            if (detail !== quoteDetails) {
+                detail.style.display = 'none'; // Close other details
+            }
+        });
+        quoteDetails.style.display = quoteDetails.style.display === 'none' ? 'block' : 'none'; // Toggle current detail
+    }
+
+    // Add click event to the first quote
+    const firstQuote = document.querySelector('#quotes-container .quote:first-child');
+    const quoteDetails = document.getElementById('quote-details');
+
+    firstQuote.addEventListener('click', () => {
+        toggleQuoteDetails(quoteDetails);
+    });
+
+    // Add click event to the second quote
+    const secondQuote = document.querySelector('#quotes-container .quote:nth-child(2)');
+    const quote2Details = document.getElementById('quote2-details');
+
+    secondQuote.addEventListener('click', () => {
+        toggleQuoteDetails(quote2Details);
+    });
+
+    // Add click event to the third quote
+    const thirdQuote = document.querySelector('#quotes-container .quote:nth-child(3)');
+    const quote3Details = document.getElementById('quote3-details');
+
+    thirdQuote.addEventListener('click', () => {
+        toggleQuoteDetails(quote3Details);
+    });
 });
 
 // Ensure Three.js Hologram and Tiles are initialized properly
