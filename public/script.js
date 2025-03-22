@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Save feedback functionality with typing effect
-    document.getElementById('save-feedback-button').addEventListener('click', () => {
+    document.getElementById('save-feedback-button').addEventListener('click', async () => {
         const name = document.getElementById('feedback-name').value;
         const description = document.getElementById('feedback-description').value;
 
@@ -124,6 +124,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Start typing effect
             typeFeedback(feedbackItem, `<strong>${name}:</strong> ${description}`);
             feedbackList.appendChild(feedbackItem);
+
+            // Send feedback to the server
+            try {
+                const response = await fetch('/save-feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, description }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    console.log(data.message);
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error saving feedback:', error);
+                alert('An error occurred while saving feedback.');
+            }
 
             // Clear the input fields
             document.getElementById('feedback-name').value = '';
