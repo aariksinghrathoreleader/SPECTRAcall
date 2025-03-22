@@ -23,6 +23,6 @@
     "express",
     "vercel"
   ],
-  "author": "Your Name",
+  "author": "Your Name", // Replace with your name
   "license": "MIT"
 }
