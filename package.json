@@ -1,0 +1,28 @@
+{
+  "name": "feedback-app",
+  "version": "1.0.0",
+  "description": "A simple feedback application with Node.js and Vercel",
+  "main": "server.js", // This can be omitted if not using a main entry point
+  "scripts": {
+    "start": "node server.js", // Optional: for local development
+    "dev": "vercel dev" // Optional: for local development with Vercel
+  },
+  "dependencies": {
+    "express": "^4.17.1", // Express framework for handling requests
+    "body-parser": "^1.19.0" // Middleware for parsing request bodies
+  },
+  "devDependencies": {
+    // Add any development dependencies here if needed
+  },
+  "engines": {
+    "node": ">=14.x" // Specify the Node.js version
+  },
+  "keywords": [
+    "feedback",
+    "node",
+    "express",
+    "vercel"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
