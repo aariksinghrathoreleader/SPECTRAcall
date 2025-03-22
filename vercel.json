@@ -12,9 +12,17 @@
     {
       "src": "public/script.js",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/feedback.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/feedback",
+      "dest": "/api/feedback.js"
+    },
     {
       "src": "/(.*)",
       "dest": "/public/$1"
