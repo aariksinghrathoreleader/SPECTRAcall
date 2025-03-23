@@ -266,7 +266,6 @@ header {
 
 .quote-details h2 {
     font-size: 2em; /* Larger font size for headings */
-    color: #00adb5; /* Different color for headings */
     margin-bottom: 15px; /* Space below heading */
     text-shadow: 0 0 10px rgba(0, 173, 181, 0.8); /* Subtle glow effect */
 }
@@ -289,7 +288,6 @@ header {
 }
 
 .quote-details li::before {
-    content: '✔️'; /* Checkmark icon before list items */
     position: absolute;
     left: 0; /* Positioning the icon */
     color: #00adb5; /* Color for the icon */
