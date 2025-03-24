@@ -286,7 +286,7 @@ header {
 
 .quote-details ul, .quote-details ol {
     margin-left: 20px; /* Indent lists */
-    margin-top: 10px; /* Space above lists */
+      margin-top: 10px; /* Space above lists */
 }
 
 .quote-details li {
@@ -297,7 +297,6 @@ header {
 }
 
 .quote-details li::before {
-    
     position: absolute;
     left: 0; /* Positioning the icon */
     color: #00adb5; /* Color for the icon */
@@ -335,17 +334,25 @@ header {
 }
 
 .close-button {
-    color: #aaa; /* Close button color */
+    color: #aaa; /* Default color */
     float: right; /* Float to the right */
     font-size: 28px; /* Font size */
     font-weight: bold; /* Bold text */
+    background-color: rgba(0, 173, 181, 0.8); /* Background color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Padding for better click area */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Smooth transitions */
+    cursor: pointer; /* Pointer cursor */
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: black; /* Change color on hover */
+    color: #fff; /* Change text color on hover */
+    background-color: #00adb5; /* Change background color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
     text-decoration: none; /* No underline */
-    cursor: pointer; /* Pointer cursor */
+    outline: none; /* Remove outline on focus */
 }
 
 #feedback-options {
@@ -416,25 +423,5 @@ header {
 
 .dropdown-content a:hover {
     background-color: rgba(0, 173, 181, 0.2); /* Change background on hover */
-    color: #00adb5; /* Change text color on hover */
-}
-
-#fading-image {
-    opacity: 0; /* Start hidden */
-    animation: fadeInOut 10s infinite; /* Adjust the duration as needed */
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0; /* Fully transparent */
-    }
-    10% {
-        opacity: 1; /* Fully visible */
-    }
-    90% {
-        opacity: 1; /* Fully visible */
-    }
-    100% {
-        opacity: 0; /* Fully transparent */
-    }
+    color: #00adb5; 
 }
