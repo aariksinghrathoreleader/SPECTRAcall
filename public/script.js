@@ -11,27 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleSplashScreen();
 
-    document.getElementById('upload-button').addEventListener('click', async () => {
-        const fileInput = document.getElementById('file-input');
-        if (!fileInput.files.length) return alert('Please select an image to upload');
-
-        const formData = new FormData();
-        formData.append('image', fileInput.files[0]);
-
-        try {
-            // Simulate an upload process (replace with your actual upload logic)
-            const uploadedImageUrl = URL.createObjectURL(fileInput.files[0]); // Create a local URL for the uploaded image
-
-            // Display the uploaded image
-            const uploadedImage = document.getElementById('uploaded-image');
-            uploadedImage.src = uploadedImageUrl; // Set the source to the uploaded image
-            uploadedImage.style.display = 'block'; // Show the image
-        } catch (error) {
-            console.error('Upload Error:', error);
-            alert('An error occurred while uploading the image.');
-        }
-    });
-
     // Dropdown functionality
     const dropdownContent = document.querySelector('.dropdown-content');
     document.querySelector('.menu-button').addEventListener('click', (event) => {
