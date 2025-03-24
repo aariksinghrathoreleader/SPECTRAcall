@@ -19,37 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('image', fileInput.files[0]);
 
         try {
-            const response = await fetch('/upload', {
-                method: 'POST',
-                body: formData
-            });
-            const data = await response.json();
-            if (data.url) {
-                const processResponse = await fetch('/process-image', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ imageUrl: data.url })
-                });
-                const processData = await processResponse.json();
-                if (processData.modelUrl) {
-                    alert('Image uploaded and 3D hologram generated');
-                    loadHologram(processData.modelUrl);
-                }
-            }
+            // Simulate an upload process (replace with your actual upload logic)
+            const uploadedImageUrl = URL.createObjectURL(fileInput.files[0]); // Create a local URL for the uploaded image
+
+            // Display the uploaded image
+            const uploadedImage = document.getElementById('uploaded-image');
+            uploadedImage.src = uploadedImageUrl; // Set the source to the uploaded image
+            uploadedImage.style.display = 'block'; // Show the image
         } catch (error) {
             console.error('Upload Error:', error);
             alert('An error occurred while uploading the image.');
-        }
-    });
-
-    document.getElementById('create-magic-button').addEventListener('click', async () => {
-        try {
-            const response = await fetch('/create-magic', { method: 'POST' });
-            const data = await response.json();
-            alert(data.message);
-        } catch (error) {
-            console.error('Create Magic Error:', error);
-            alert('An error occurred while creating magic.');
         }
     });
 
@@ -90,15 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Function to toggle quote details
-    function toggleQuoteDetails(quoteDetails) {
+    // Function to show quote details in full screen
+    function showQuoteDetails(quoteDetails) {
         const allDetails = document.querySelectorAll('.quote-details');
+        const allQuotes = document.querySelectorAll('.quote');
+
+        // Hide all other details and quotes
         allDetails.forEach(detail => {
-            if (detail !== quoteDetails) {
-                detail.style.display = 'none';
-            }
+            detail.style.display = 'none';
         });
-        quoteDetails.style.display = quoteDetails.style.display === 'none' ? 'block' : 'none';
+        allQuotes.forEach(quote => {
+            quote.style.display = 'none';
+        });
+
+        // Show the selected detail
+        quoteDetails.style.display = 'block';
+        quoteDetails.classList.add('active'); // Add active class for animation
+
+        // Request full screen
+        if (quoteDetails.requestFullscreen) {
+            quoteDetails.requestFullscreen();
+        } else if (quoteDetails.mozRequestFullScreen) { // Firefox
+            quoteDetails.mozRequestFullScreen();
+        } else if (quoteDetails.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            quoteDetails.webkitRequestFullscreen();
+        } else if (quoteDetails.msRequestFullscreen) { // IE/Edge
+            quoteDetails.msRequestFullscreen();
+        }
     }
 
     // Add click event to the quotes
@@ -106,8 +103,25 @@ document.addEventListener('DOMContentLoaded', () => {
         quote.addEventListener('click', () => {
             const detailsId = quote.dataset.details;
             const details = document.getElementById(detailsId);
-            toggleQuoteDetails(details);
+            showQuoteDetails(details);
             details.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Close quote details functionality
+    document.querySelectorAll('.close-quote-details').forEach(button => {
+        button.addEventListener('click', () => {
+            const details = button.closest('.quote-details');
+            details.style.display = 'none'; // Hide the quote details
+            details.classList.remove('active'); // Remove active class
+            const allQuotes = document.querySelectorAll('.quote');
+            allQuotes.forEach(quote => {
+                quote.style.display = 'block'; // Show all quotes again
+            });
+            // Exit full screen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         });
     });
 });
