@@ -243,36 +243,44 @@ header {
 
 .quote-details {
     display: none; /* Initially hidden */
-    background: linear-gradient(135deg, rgba(0, 173, 181, 0.8), rgba(0, 0, 0, 0.5)); /* Gradient background */
+    background: linear-gradient(135deg, rgba(0, 173, 181, 0.9), rgba(0, 0, 0, 0.7)); /* Gradient background */
     color: #ffd369; /* Text color */
-    padding: 30px; /* Increased padding for a spacious feel */
+    padding: 40px; /* Increased padding for a spacious feel */
     border-radius: 15px; /* Rounded corners */
     margin-top: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* Subtle shadow */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8); /* Subtle shadow */
     transition: transform 0.3s, opacity 0.5s ease-in-out; /* Smooth transition */
     animation: fadeIn 0.5s forwards; /* Animation for showing */
+    max-width: 800px; /* Set a max width for better readability */
+    margin-left: auto; /* Center the details */
+    margin-right: auto; /* Center the details */
+    position: relative; /* For positioning pseudo-elements */
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Slide in effect */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.quote-details::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Position above the details */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Width of the decorative element */
+    height: 10px; /* Height of the decorative element */
+    background: rgba(255, 255, 255, 0.2); /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
 }
 
 .quote-details h2 {
-    font-size: 2em; /* Larger font size for headings */
+    font-size: 2.5em; /* Larger font size for headings */
     margin-bottom: 15px; /* Space below heading */
     text-shadow: 0 0 10px rgba(0, 173, 181, 0.8); /* Subtle glow effect */
+    border-bottom: 2px solid rgba(255, 211, 105, 0.7); /* Underline effect */
+    padding-bottom: 10px; /* Space below heading */
 }
 
 .quote-details p {
-    font-size: 1.1em; /* Slightly larger font size for paragraphs */
-    line-height: 1.6; /* Improved line height for readability */
+    font-size: 1.2em; /* Slightly larger font size for paragraphs */
+    line-height: 1.8; /* Improved line height for readability */
     margin-bottom: 15px; /* Space below paragraphs */
 }
 
@@ -285,9 +293,11 @@ header {
     margin-bottom: 10px; /* Space between list items */
     position: relative; /* For pseudo-element */
     padding-left: 25px; /* Space for the icon */
+    font-size: 1.1em; /* Font size for list items */
 }
 
 .quote-details li::before {
+    
     position: absolute;
     left: 0; /* Positioning the icon */
     color: #00adb5; /* Color for the icon */
@@ -298,6 +308,7 @@ header {
     transform: scale(1.02); /* Slightly enlarge on hover */
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8); /* Increase shadow on hover */
     cursor: pointer; /* Change cursor to pointer */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
 }
 
 /* Modal Styles */
@@ -407,4 +418,23 @@ header {
     background-color: rgba(0, 173, 181, 0.2); /* Change background on hover */
     color: #00adb5; /* Change text color on hover */
 }
-/* Feedback Modal Styles */
+
+#fading-image {
+    opacity: 0; /* Start hidden */
+    animation: fadeInOut 10s infinite; /* Adjust the duration as needed */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0; /* Fully transparent */
+    }
+    10% {
+        opacity: 1; /* Fully visible */
+    }
+    90% {
+        opacity: 1; /* Fully visible */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+    }
+}
